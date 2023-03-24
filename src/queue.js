@@ -19,26 +19,28 @@ class Queue {
   }
 
   getUnderlyingList() {
-    let value = null;
-    let nextValue = null;
-    if (this._queue[0] !== undefined) {
-      value = this._queue[0];
+    let obj = {};
+    let arr = [... this._queue];
+
+    let l = arr.length - 1;
+    for (let i = l; i > 0; i--) {
+      if (arr[i - 1].next !== undefined) {
+        arr[i - 1].next = arr[i];
+      }
     }
-    if (this._queue[1] !== undefined) {
-      nextValue = this._queue[1];
-    }
-    return {
-      value: value,
-      next: nextValue
-    }
+
+    return arr[0];
   }
 
   enqueue(value) {
-    this._queue.push(value);
+    this._queue.push({
+      value: value,
+      next: null
+    });
   }
 
   dequeue() {
-    return this._queue.shift();
+    return this._queue.shift().value;
   }
 }
 
