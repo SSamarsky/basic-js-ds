@@ -19,7 +19,7 @@ class Queue {
 
   getUnderlyingList() {
     let obj = {};
-    let arr = [... this._queue];
+    let arr = [...this._queue];
 
     let l = arr.length - 1;
     for (let i = l; i > 0; i--) {
@@ -28,7 +28,7 @@ class Queue {
       }
     }
 
-    return arr[0];
+    return arr[0] || null;
   }
 
   enqueue(value) {
@@ -39,7 +39,7 @@ class Queue {
   }
 
   dequeue() {
-    return this._queue.shift().value;
+    return this._queue.shift()?.value || null;
   }
 }
 
