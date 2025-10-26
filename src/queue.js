@@ -1,5 +1,5 @@
 const { NotImplementedError } = require('../lib/errors');
-// const { ListNode } = require('../extensions/list-node.js');
+const { ListNode } = require('../extensions/list-node.js');
 
 /**
  * Implement the Queue with a given interface via linked list (use ListNode extension above).
@@ -39,7 +39,9 @@ class Queue {
   }
 
   dequeue() {
-    return this._queue.shift()?.value || null;
+    if (!this._queue.length) return;
+    if (this._queue.length > 0) return this._queue.shift().value || null;
+    else return null;
   }
 }
 
